@@ -34,7 +34,6 @@ int main()
 	}
 	cout << "]" << endl;
 
-
 	for ( int q : queries ) {
 		cout << "Result of searching for \"" << q << "\" is: " << bSearch(v, q) << endl;
 	}
@@ -45,24 +44,37 @@ int main()
 
 //
 int bSearch(const std::vector<int>& v, int q) {
+
+	//
 	int start = 0;
 	int end = v.size() - 1;
 
 	int result = -1;
+
+	// Loop until done
 	while ( true ) {
-		if (start == end) {// Handle end of search
+
+		//	Handle only one item left to search
+		if (start == end) {
 			if (v[start] == q) {
 				result = start;
 			}
 			break;
 		}
+
+		//	Inspect the middle point
 		int middle = static_cast<int>(floor(
-			(end - start) / 2
+			(start + end) / 2					// This part needed correction
+												// The "middle" should have been the average of start and end, not their difference
 		));
+
+		//	Middle point was a match: Success
 		if (v[middle] == q) {
 			result = middle;
 			break;
 		}
+
+		//	Discard one side or the other
 		if ( v[middle] > q ) {	// Get rid of the right side
 			end = middle - 1;
 		}
@@ -73,3 +85,4 @@ int bSearch(const std::vector<int>& v, int q) {
 
 	return result;
 }
+
