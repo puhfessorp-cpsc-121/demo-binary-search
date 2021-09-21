@@ -3,9 +3,11 @@
 CC := g++
 CC_FLAGS := -Wall -std=c++17 -g -pedantic -c
 
+
 #
-LINK := gcc
+LINK := g++
 LINK_FLAGS := -Wall -pedantic -std=c++17
+
 
 #
 BIN_NAME := main
@@ -33,7 +35,7 @@ $(BIN):	main.o
 
 #
 main.o:	main.cpp
-	$(CC) $(CC_FLAGS) "$<" -o "$@"
+	$(CC) $(CC_FLAGS) $< -o "$@"
 
 
 #
